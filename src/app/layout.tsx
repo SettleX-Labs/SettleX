@@ -4,6 +4,7 @@ import "./globals.css";
 import {ReactNode} from "react";
 import Header from "@components/Header";
 import {NextThemeProvider} from "@/lib/theme-provider";
+import {Analytics} from "@vercel/analytics/react"
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -24,9 +25,10 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode }>
     return (
         <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NextThemeProvider attribute="class" defaultTheme="dark" storageKey='theme'>
+        <NextThemeProvider attribute="class" defaultTheme="dark" storageKey='theme' disableTransitionOnChange={false}>
             <Header/>
             {children}
+            <Analytics/>
         </NextThemeProvider>
         </body>
         </html>
